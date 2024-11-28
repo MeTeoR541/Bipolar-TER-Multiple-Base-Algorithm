@@ -39,6 +39,8 @@ int TER_multiple_base_algorithm(char** TER_base, int length, unsigned char* h, i
             }
             else{
                 *TER_base[start] = key_chain[i - 4];
+                int tmp = *TER_base[start];
+                std::cout<<tmp<<" ";
             }
             start++;
         }

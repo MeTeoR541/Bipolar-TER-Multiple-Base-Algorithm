@@ -40,7 +40,7 @@ int main(){
             int zero_time = 1;
             for(int j = i + 1; j < byte_size; ++j){
                 //std::cout<<"key"<<j<<std::endl;
-                if(TER_base[j] == 0x00 || TER_base[j] == 0x01 || TER_base[j] == 0xff) continue;
+                if(TER_base[j] == 0x00 || TER_base[j] == 0x01 || TER_base[j] == (char)-1) continue;
                 if(received_base[j] == 0x00){
                     zero_time++;
                     continue;
@@ -68,9 +68,9 @@ int main(){
     unsigned char *plain_text = new unsigned char[key_chain.size()];
     int start = 0;
     for(int i = 0; i < key_chain.size(); ++i){
-        unsigned tmp = 0x00;
+        unsigned char tmp = 0x00;
         for(int j = 0; j < key_chain[i]; ++j){
-            unsigned weight = 0x01;
+            unsigned char weight = 0x01;
             for(int k = j + 1; k <key_chain[i]; ++k){
                 weight *= abs(non01_deafult_base[start + k]);
             }
@@ -83,5 +83,6 @@ int main(){
     //     int tmp = plain_text[i];
     //     std::cout<<tmp<<" ";
     // }
+    
     std::cout<<plain_text<<std::endl;
 }
